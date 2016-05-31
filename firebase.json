@@ -1,0 +1,9 @@
+{
+  "firebase": "flasht",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

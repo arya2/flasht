@@ -5,15 +5,15 @@
         .module('flasht.core')
         .factory('fref', fref);
 
-    fref.$inject = ['firebase'];
+    fref.$inject = [];
 
     function fref() {
         var fref = {
             ref: ref
         };
+        return fref;
 
         var ref = new Firebase("https:/flasht.firebaseio.com");
-        return fref;
     }
 
 })();

@@ -1,24 +1,30 @@
 (function () {
-    'use-strict';
+    'use strict';
 
     angular
         .module('flasht')
         .controller('HomeController', homeController);
 
-    homeController.$inject = ["$log", "fref", "Auth"];
+    homeController.$inject = ["$log", "Auth", "UserData", "DeckData"];
 
-    function homeController($log, fref, Auth) {
+    function homeController($log, Auth, UserData, DeckData) {
         var vm = this;
-        vm.login = login;
+        Auth.diff(vm);
+        UserData.getUserData(vm);
 
-        function login() {
-            $log.log("logged");
-            Auth.$authWithOAuthPopup("google").then(function (d) {
-                $log.info(d)
+        vm.signin = Auth.signin;
+        vm.createDeck = createDeck;
+        vm.noDecks = noDecks;
+
+        function noDecks() {
+            return (!!vm.user && vm.userdata);
+        }
+
+        function createDeck() {
+            DeckData.pushDeck({
+                name: vm.newDeck
             });
         }
     }
-
-
 
 })();

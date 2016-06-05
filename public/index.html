@@ -4,16 +4,12 @@
 <head>
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap-theme.css" />
-    <link rel="stylesheet" href="build/dist.css">
     <!-- inject:css -->
     <!-- endinject -->
 
     <link rel="stylesheet" href="build/dist.css">
     <title>Flasht</title>
-</head>
 
-<body>
-    <div ng-include="'app/components/layout/shell.html'"></div>
 
     <script type="text/javascript" src="app/bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="app/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
@@ -21,9 +17,23 @@
     <script type="text/javascript" src="app/bower_components/firebase/firebase.js"></script>
     <script type="text/javascript" src="app/bower_components/angularfire/dist/angularfire.js"></script>
 
-    <!-- inject:js -->
-    <!-- endinject -->
 
+    <!-- inject:js -->
+    <script src="/app/components/core/core.modules.js"></script>
+    <script src="/app/components/core/services/userdata.js"></script>
+    <script src="/app/components/core/services/firebase_ref.js"></script>
+    <script src="/app/components/core/services/deckdata.js"></script>
+    <script src="/app/components/core/services/auth.js"></script>
+    <script src="/app/components/flasht.modules.js"></script>
+    <script src="/app/components/home/home.controller.js"></script>
+    <script src="/app/components/core/run.js"></script>
+    <script src="/app/components/core/nav.controller.js"></script>
+    <script src="/app/components/core/config.js"></script>
+    <!-- endinject -->
+</head>
+
+<body>
+    <div ng-include="'app/components/layout/shell.html'"></div>
 </body>
 
 </html>

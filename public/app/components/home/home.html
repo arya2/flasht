@@ -1,5 +1,32 @@
-<div class="jumbotron">
-    <h1>Login</h1>
-    <p>Login to see your dashboard</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button" ng-click="vm.login()">Login</a></p>
+<div class="container">
+
+    <div class="jumbotron" ng-if="!vm.user">
+        <h1>Welcome to Flasht</h1>
+        <p>A memory tool that estimates the best time to present you your flash cards so that you can make the most of your time.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button" ng-click="vm.signin()">Sign in with Google</a></p>
+    </div>
+
+    <div class="row" ng-if="vm.noDecks()">
+        <div class="page-header">
+            <h1>Getting Started</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Create Your First Deck</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <input type="text" class="form-control" placeholder="Deck Name" ng-model="vm.newDeck">
+                        <button class="btn btn-default pull-right top-spacer" type="button" ng-click="vm.createDeck()">Create Deck</button>
+                    </div>
+
+                    {{vm.decks}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>

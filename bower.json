@@ -22,10 +22,7 @@
     "angular-route": "~1.5.5",
     "bootstrap": "~3.3.6",
     "angular-ui-router": "~0.2.18",
-    "firebase": "~3.0.3",
-    "angularfire": "~1.2.0"
-  },
-  "resolutions": {
-    "firebase": "~3.0.3"
+    "firebase": "^3.0.3",
+    "angularfire": "^2.0.1"
   }
 }

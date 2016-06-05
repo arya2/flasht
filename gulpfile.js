@@ -16,8 +16,11 @@ gulp.task('compile-less', function () {
 });
 
 gulp.task('inject-deps', function () {
-    return gulp.src('./public/index.html').pipe(inject(gulp.src(['app/components/**/*.js'], {
-            cwd: __dirname + "/public"
-        }).pipe(angularFilesort())))
+    return gulp
+        .src('./public/index.html')
+        .pipe(inject(gulp.src(['app/components/**/*.js'], {
+                cwd: __dirname + "/public"
+            })
+            .pipe(angularFilesort())))
         .pipe(gulp.dest('./public'));
 });

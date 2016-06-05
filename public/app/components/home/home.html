@@ -6,7 +6,7 @@
         <p><a class="btn btn-primary btn-lg" href="#" role="button" ng-click="vm.signin()">Sign in with Google</a></p>
     </div>
 
-    <div class="row" ng-if="vm.noDecks()">
+    <div class="row" ng-if="vm.numDecks(0)">
         <div class="page-header">
             <h1>Getting Started</h1>
         </div>
@@ -18,15 +18,62 @@
                     </div>
 
                     <div class="panel-body">
-                        <input type="text" class="form-control" placeholder="Deck Name" ng-model="vm.newDeck">
-                        <button class="btn btn-default pull-right top-spacer" type="button" ng-click="vm.createDeck()">Create Deck</button>
+                        <input type="text" class="form-control" placeholder="Deck Name" ng-model="vm.newDeck" ng-keypress="vm.createDeck($event)">
+                        <button class="btn btn-default pull-right top-spacer" type="button" ng-click="vm.createDeck($event)">Create Deck</button>
                     </div>
-
-                    {{vm.decks}}
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row" ng-if="!vm.numDecks(0)">
+        <div class="page-header" ng-if="vm.numDecks(1)">
+            <h1>Getting Started</h1>
+        </div>
+        <div class="row well" ng-if="vm.numDecks(1)">
+            <h4>Fantastic, you did it. Now try adding a card to your deck.</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 well">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h2>Your Decks:</h2>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-class="{'active':(deck == vm.selectedDeck)}" ng-repeat="deck in vm.decks" ng-click="vm.selectDeck(deck.$id)">
+                                {{deck.name}}
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+
+                    <div class="panel-body">
+                        <h4>Create New Deck</h4>
+
+                        <input type="text" class="form-control" placeholder="Deck Name" ng-model="vm.newDeck" ng-keypress="vm.createDeck($event)">
+                        <button class="btn btn-default pull-right top-spacer" type="button" ng-click="vm.createDeck($event)">Create Deck</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class=" col-sm-6 ">
+                <div class="panel ">
+                    <div class="panel-heading ">
+                        <h3>Add a card to <strong>{{vm.selectedDeck.name}}</strong></h3>
+                    </div>
+
+                    <div class="panel-body ">
+                        <input type="text " class="form-control " placeholder="Front text .." ng-model="vm.newCardFront" ng-keypress="vm.addCard($event) ">
+                        <input type="text " class="form-control top-spacer" placeholder="Back text .." ng-model="vm.newCardBack" ng-keypress="vm.addCard($event) ">
+                        <button class="btn btn-default pull-right top-spacer " type="button " ng-click="vm.addCard($event) ">Add Card</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

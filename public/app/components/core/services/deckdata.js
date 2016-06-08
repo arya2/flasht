@@ -26,6 +26,12 @@
 
             function updateDecks() {
                 var d = DeckData.dataObj;
+                d.map(function (deck) {
+                    deck.cards = $firebaseArray(fref.child(uid).child("decks").child(d.$keyAt(deck)).child("cards"));
+                    if (deck.cards.length == 0) deck.cards.$add({
+                        card1: 'yolo'
+                    });
+                });
                 registeredControllers.map(function (vm) {
                     vm.decks = d;
                     vm.selectedDeck = vm.decks[vm.decks.length - 1];

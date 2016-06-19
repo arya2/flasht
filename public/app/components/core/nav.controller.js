@@ -7,15 +7,24 @@
         .controller('NavController', NavController);
 
 
-    NavController.$inject = ["Auth"]
+    NavController.$inject = ["Auth", "$state"]
 
-    function NavController(Auth) {
+    function NavController(Auth, $state) {
         var nav = this;
-        nav.signin = Auth.signin;
-        nav.signout = Auth.signout;
+        nav.user = Auth.$getAuth();
+        nav.signin = signin;
+        nav.signout = signOut;
 
-        Auth.diff(nav);
+        function signOut() {
+            Auth.$signOut();
+            $state.go('home');
+        }
 
+        Auth.$onAuthStateChanged((u) => nav.user = u);
+
+        function signin() {
+            nav.user = Auth.$signInWithPopup("google");
+        }
     }
 
 })();

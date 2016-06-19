@@ -6,7 +6,8 @@
             </div>
             <div class="col-sm-offset-3 col-sm-6">
                 <ul class="nav nav-pills nav-dock pull-right">
-                    <li role="presentation" ui-sref-active="active"><a ui-sref="manageDecks">Manage Decks</a></li>
+                    <li role="presentation" ui-sref-active="active" ng-if="nav.user"><a ui-sref="manageDecks">Manage Decks</a></li>
+                    <li role="presentation" ui-sref-active="active" ng-if="nav.user"><a ui-sref="dashboard">Dashboard</a></li>
                     <li role="presentation" ng-click="nav.signin()" ng-if="!nav.user"><a href>Sign in</a></li>
                     <li role="presentation" ng-click="nav.signout()" ng-if="nav.user"><a href>Sign out</a></li>
                 </ul>

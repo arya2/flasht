@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Make a new card</h3>
+    </div>
+    <div class="panel-body">
+        <label>Front Text: </label>
+        <input type="text" class="form-control" ng-model="vm.newCard.front" placeholder="Back text">
+        <label class="top-spacer">Back Text: </label>
+        <input type="text" class="form-control" ng-model="vm.newCard.back" placeholder="Front text" ng-keypress="vm.createCard($event)">
+
+        <div class="btn btn-primary top-spacer" ng-click="vm.createCard()">
+            Create Card
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default" ng-repeat="card in vm.cards">
+    <div class="panel-body">
+        <span class="label label-default">{{card.lastviewed || "new"}}</span>
+        <span class="glyphicon glyphicon-remove-sign pull-right decks-remove" ng-click=vm.removeCard(card)></span>
+        <h3>Front text: {{card.front}}</h3>
+        <h3>Back text: {{card.back}}</h3>
+    </div>
+
+</div>

@@ -3,15 +3,30 @@
 
     angular
         .module('flasht')
-        .controller('DeckController', DeckController);
+        .controller('ManageDeckController', ManageDeckController);
 
-    DeckController.$inject = ["fref", "Auth"];
+    ManageDeckController.$inject = ["currentAuth", "fref", "$firebaseArray", "Auth", "$location", "$state", "$window", "$document"];
 
-    function DeckController(fref, Auth) {
+    function ManageDeckController(currentAuth, fref, $firebaseArray, Auth, $location, $state, $window, $document) {
         var vm = this;
-        Auth.diff(vm);
+        vm.user = currentAuth;
+        vm.createDeck = createDeck;
+        vm.removeDeck = removeDeck;
 
-        vm.decks = $firebaseArray(fref.child(vm.user.uid));
+        vm.decks = $firebaseArray(fref.child(vm.user.uid).child("decks"));
+
+        function createDeck($event) {
+            if ($event && $event.type == 'keypress' && event.keyCode != 13) return null;
+            vm.decks.$add({
+                name: vm.newDeck
+            });
+        }
+
+        function removeDeck(deck) {
+            if ($location.url().split('/')[2] === deck.$id) $state.go('manageDecks');
+            vm.decks.$remove(deck);
+        }
+
     }
 
 })();

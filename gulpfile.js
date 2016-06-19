@@ -5,10 +5,13 @@ var less = require('gulp-less');
 var concat = require('gulp-concat');
 var gsi = require('gulp-scripts-index');
 var watch = require('gulp-watch');
+var debug = require('gulp-debug');
+var babel = require('gulp-babel');
+var uglify = require('gulp-uglify')
 
-gulp.task('default', ['inject-deps', 'compile-less', 'watch-less', 'inject-deps']);
+gulp.task('default', ['compile-scripts', 'compile-less', 'watch-less', 'watch-scripts']);
 
-gulp.task('compile-less', function () {
+gulp.task('compile-less', function() {
     return gulp
         .src('./public/app/components/**/*.less')
         .pipe(less())
@@ -16,19 +19,20 @@ gulp.task('compile-less', function () {
         .pipe(gulp.dest('public/build/'))
 });
 
-gulp.task('watch-less', function () {
+gulp.task('watch-less', function() {
     return gulp.watch('./public/app/components/**/*.less', ['compile-less']);
 });
-gulp.task('watch-script-deps', function () {
-    return gulp.watch('./public/app/components/**/*.js', ['inject-deps']);
+gulp.task('watch-scripts', function() {
+    return gulp.watch('./public/app/components/**/*.js', ['compile-scripts']);
 });
 
-gulp.task('inject-deps', function () {
+gulp.task('compile-scripts', function() {
     return gulp
-        .src('./public/index.html')
-        .pipe(inject(gulp.src(['app/components/**/*.js'], {
-                cwd: __dirname + "/public"
-            })
-            .pipe(angularFilesort())))
-        .pipe(gulp.dest('./public'));
+        .src('./public/app/components/**/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(angularFilesort())
+        .pipe(concat("scripts.js"))
+        .pipe(gulp.dest('./public/build'));
 });

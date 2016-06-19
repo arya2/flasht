@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -6,7 +6,9 @@
         .controller('studyDeckController', studyDeckController);
 
     function studyDeckController() {
-        console.log("Study Deck Cotroller loaded");
+        var vm = this;
+        vm.lol = "hellop"
+
     }
 
 })();

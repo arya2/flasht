@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17,7 +17,7 @@
                 controller: "HomeController",
                 controllerAs: "vm",
                 resolve: {
-                    "currentAuth": ["Auth", function (Auth) {
+                    "currentAuth": ["Auth", function(Auth) {
                         return Auth.$waitForSignIn();
                     }]
                 }
@@ -28,9 +28,9 @@
                 controller: "ManageDeckController",
                 controllerAs: "vm",
                 resolve: {
-                    "currentAuth": ["Auth", function (Auth) {
+                    "currentAuth": ["Auth", function(Auth) {
                         return Auth.$requireSignIn();
-                }]
+                    }]
                 }
             })
             .state('manageDecks.deck', {
@@ -39,16 +39,16 @@
                 controller: "DeckController",
                 controllerAs: "vm",
                 resolve: {
-                    "cards": ["Auth", "$firebaseArray", "fref", "$stateParams", "$state", function (Auth, $firebaseArray, fref, $stateParams, $state) {
+                    "cards": ["Auth", "$firebaseArray", "fref", "$stateParams", "$state", function(Auth, $firebaseArray, fref, $stateParams, $state) {
                         if (Auth.$getAuth()) {
                             return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks').child($stateParams.deck).child('cards')).$loaded();
                         }
-                        return Auth.$requireSignIn().then(function (d) {
+                        return Auth.$requireSignIn().then(function(d) {
                             return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks').child($stateParams.deck).child('cards')).$loaded();
-                        }).catch(function (e) {
+                        }).catch(function(e) {
                             $state.go('home');
                         });
-                }]
+                    }]
                 }
             })
             .state('dashboard', {
@@ -57,13 +57,13 @@
                 controller: "DashboardController",
                 controllerAs: "vm",
                 resolve: {
-                    "decks": ["Auth", "fref", "$firebaseArray", "$state", function (Auth, fref, $firebaseArray, $state) {
-                        return Auth.$requireSignIn().then(function (d) {
+                    "decks": ["Auth", "fref", "$firebaseArray", "$state", function(Auth, fref, $firebaseArray, $state) {
+                        return Auth.$requireSignIn().then(function(d) {
                             return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks'));
-                        }).catch(function (e) {
+                        }).catch(function(e) {
                             $state.go('home');
                         });
-                }]
+                    }]
                 }
             })
             .state('dashboard.deck', {
@@ -72,28 +72,29 @@
                 controller: "DashboardDeckDetailsController",
                 controllerAs: "vm",
                 resolve: {
-                    "user": ["Auth", "$state", function (Auth, $state) {
-                        return Auth.$requireSignIn().then(function (d) {
+                    "user": ["Auth", "$state", function(Auth, $state) {
+                        return Auth.$requireSignIn().then(function(d) {
                             return Auth.$getAuth();
-                        }).catch(function (e) {
+                        }).catch(function(e) {
                             $state.go('home');
                         });
                     }]
                 }
             })
             .state('studydeck', {
-                url: "studydeck/:deck",
+                url: "/studydeck/:deck",
                 templateUrl: "app/components/studyDeck/studyDeck.html",
                 controller: "studyDeckController",
                 controllerAs: "vm",
                 resolve: {
-                    "user": ["Auth", "$state", function (Auth, $state) {
-                        return Auth.$requireSignIn().then(function (d) {
-                            return Auth.$getAuth();
-                        }).catch(function (e) {
-                            $state.go('home');
-                        });
-                    }]
+                    "user": ["Auth", "$state", "$stateParams",
+
+                        function(Auth, $state, $stateParams) {
+                            return Auth.$requireSignIn().then(function(d) {
+                                return Auth.$getAuth();
+                            }).catch(function(e) {});
+                        }
+                    ]
                 }
             });
     }

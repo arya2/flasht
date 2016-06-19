@@ -3,3 +3,4 @@ node_modules
 database.rules.json
 firebase.json
 public/app/bower_components
+public/build

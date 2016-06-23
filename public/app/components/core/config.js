@@ -17,8 +17,10 @@
                 controller: "HomeController",
                 controllerAs: "vm",
                 resolve: {
-                    "currentAuth": ["Auth", function(Auth) {
-                        return Auth.$waitForSignIn();
+                    "currentAuth": ["Auth", "$state", function(Auth, $state) {
+                        return Auth.$waitForSignIn().then(function(d) {
+                            if (d) $state.go('dashboard');
+                        })
                     }]
                 }
             })
@@ -88,7 +90,6 @@
                 controllerAs: "vm",
                 resolve: {
                     "user": ["Auth", "$state", "$stateParams",
-
                         function(Auth, $state, $stateParams) {
                             return Auth.$requireSignIn().then(function(d) {
                                 return Auth.$getAuth();

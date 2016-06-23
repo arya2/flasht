@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -11,8 +11,8 @@
         var vm = this;
         vm.decks = decks;
         vm.removeDeck = vm.decks.$remove;
-        decks.$loaded().then(function () {
-            $state.go("dashboard.deck", {
+        decks.$loaded().then(function() {
+            if (decks.length) $state.go("dashboard.deck", {
                 deck: vm.decks[0].$id
             });
         });

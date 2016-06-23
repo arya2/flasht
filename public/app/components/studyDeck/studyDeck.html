@@ -1,8 +1,33 @@
-<div class="container-fluid>
-
-  <div class=" page-header ">
-    <h1>Study deck </h1>
-
-    {{vm.lol}}
-  </div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Study deck </h1>
+    </div>
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <div class="panel panel-default" ng-if="vm.question">
+                <div class="panel-body">
+                    <h4>{{vm.question}}</h4>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-if="vm.answer">
+                <div class="panel-body">
+                    <h4>{{vm.answer}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3" ng-if="vm.answer">
+                    <div class="btn btn-default btn-block">Easy</div>
+                </div>
+                <div class="col-sm-3" ng-if="vm.answer">
+                    <div class="btn btn-default btn-block">Moderate</div>
+                </div>
+                <div class="col-sm-3" ng-if="vm.answer">
+                    <div class="btn btn-default btn-block">Difficult</div>
+                </div>
+                <div class="col-sm-3" ng-if="vm.question">
+                    <div class="btn btn-default btn-block">Flip!</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

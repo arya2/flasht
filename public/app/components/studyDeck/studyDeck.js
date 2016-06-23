@@ -5,10 +5,12 @@
         .module('flasht')
         .controller('studyDeckController', studyDeckController);
 
-    function studyDeckController() {
-        var vm = this;
-        vm.lol = "hellop"
+    studyDeckController.$inject = ["user"];
 
+    function studyDeckController(user) {
+        var vm = this;
+
+        vm.question = "question";
     }
 
 })();

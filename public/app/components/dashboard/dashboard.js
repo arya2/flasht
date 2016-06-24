@@ -17,7 +17,6 @@
             });
         });
 
-
         vm.done = done;
 
         function done(deck) {

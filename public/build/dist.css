@@ -8,6 +8,13 @@
   margin-top: 45px;
 }
 
+.nav-dock {
+  margin-top: 20px;
+}
+.app-title {
+  cursor: pointer;
+}
+
 .deckPanel {
   position: fixed;
 }
@@ -26,11 +33,4 @@
 }
 .decks-remove:hover {
   color: #ff5959;
-}
-
-.nav-dock {
-  margin-top: 20px;
-}
-.app-title {
-  cursor: pointer;
 }

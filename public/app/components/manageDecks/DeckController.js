@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16,7 +16,10 @@
 
         function createCard($event) {
             if ($event && $event.type == 'keypress' && event.keyCode != 13) return null;
-            vm.cards.$add(vm.newCard);
+            vm.cards.$add(Object.assign({
+                cleared: false,
+                created: Date.now()
+            }, vm.newCard));
             vm.newCard = {};
         }
     }

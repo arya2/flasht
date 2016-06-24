@@ -43,10 +43,10 @@
                 resolve: {
                     "cards": ["Auth", "$firebaseArray", "fref", "$stateParams", "$state", function(Auth, $firebaseArray, fref, $stateParams, $state) {
                         if (Auth.$getAuth()) {
-                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks').child($stateParams.deck).child('cards')).$loaded();
+                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('cards').child($stateParams.deck)).$loaded();
                         }
                         return Auth.$requireSignIn().then(function(d) {
-                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks').child($stateParams.deck).child('cards')).$loaded();
+                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('cards').child($stateParams.deck)).$loaded();
                         }).catch(function(e) {
                             $state.go('home');
                         });

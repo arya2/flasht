@@ -21,6 +21,7 @@
                 created: Date.now(),
                 name: vm.newDeck
             });
+            vm.newDeck = '';
         }
 
         function removeDeck(deck) {

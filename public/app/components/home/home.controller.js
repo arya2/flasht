@@ -1,13 +1,13 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('flasht')
         .controller('HomeController', homeController);
 
-    homeController.$inject = ["currentAuth", "$log", "Auth", "$firebaseArray", "fref"];
+    homeController.$inject = ["currentAuth", "$log", "Auth", "$firebaseArray", "fref", "$state"];
 
-    function homeController(currentAuth, $log, Auth, $firebaseArray, fref) {
+    function homeController(currentAuth, $log, Auth, $firebaseArray, fref, $state) {
         var vm = this;
         vm.user = currentAuth;
         vm.signin = signin;
@@ -19,7 +19,11 @@
         }
 
         function signin() {
-            vm.user = Auth.$signInWithPopup("google").then(getData);
+            vm.user = Auth.$signInWithPopup("google").then(function(d) {
+                console.log('user' + d);
+                $state.go('dashboard');
+            });
         }
     }
+
 })();

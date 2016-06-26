@@ -17,8 +17,10 @@
                 controller: "HomeController",
                 controllerAs: "vm",
                 resolve: {
-                    "currentAuth": ["Auth", function(Auth) {
-                        return Auth.$waitForSignIn();
+                    "currentAuth": ["Auth", "$state", function(Auth, $state) {
+                        return Auth.$waitForSignIn().then(function(d) {
+                            if (d) $state.go('dashboard');
+                        })
                     }]
                 }
             })
@@ -41,10 +43,10 @@
                 resolve: {
                     "cards": ["Auth", "$firebaseArray", "fref", "$stateParams", "$state", function(Auth, $firebaseArray, fref, $stateParams, $state) {
                         if (Auth.$getAuth()) {
-                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks').child($stateParams.deck).child('cards')).$loaded();
+                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('cards').child($stateParams.deck)).$loaded();
                         }
                         return Auth.$requireSignIn().then(function(d) {
-                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('decks').child($stateParams.deck).child('cards')).$loaded();
+                            return $firebaseArray(fref.child(Auth.$getAuth().uid).child('cards').child($stateParams.deck)).$loaded();
                         }).catch(function(e) {
                             $state.go('home');
                         });
@@ -88,7 +90,6 @@
                 controllerAs: "vm",
                 resolve: {
                     "user": ["Auth", "$state", "$stateParams",
-
                         function(Auth, $state, $stateParams) {
                             return Auth.$requireSignIn().then(function(d) {
                                 return Auth.$getAuth();

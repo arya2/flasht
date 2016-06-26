@@ -1,8 +1,34 @@
-<div class="container-fluid>
-
-  <div class=" page-header ">
-    <h1>Study deck </h1>
-
-    {{vm.lol}}
-  </div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Study deck </h1>
+    </div>
+    <div class="jumbotron">
+        <div class="container-fluid" ng-if="!vm.done">
+            <div class="panel panel-default" ng-if="!vm.currentCard.flipped">
+                <div class="panel-body">
+                    <h4>{{vm.currentCard.front}}</h4>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-if="vm.currentCard.flipped">
+                <div class="panel-body">
+                    <h4>{{vm.currentCard.back}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3" ng-if="vm.currentCard.flipped">
+                    <div class="btn btn-default btn-block" ng-click="vm.solved('easy', vm.currentCard.$id)">Easy</div>
+                </div>
+                <div class="col-sm-3" ng-if="vm.currentCard.flipped">
+                    <div class="btn btn-default btn-block" ng-click="vm.solved('moderate', vm.currentCard.$id)">Moderate</div>
+                </div>
+                <div class="col-sm-3" ng-if="vm.currentCard.flipped">
+                    <div class="btn btn-default btn-block" ng-click="vm.solved('hard', vm.currentCard.$id)">Difficult</div>
+                </div>
+                <div class="col-sm-3" ng-if="!vm.currentCard.flipped">
+                    <div class="btn btn-default btn-block" ng-click="vm.flip()">Show Answer</div>
+                </div>
+            </div>
+        </div>
+        <h5 ng-if="vm.done"> You're done!  Go back to the <a ui-sref="dashboard">Dashboard</a> to go through the rest of your decks</h5>
+    </div>
 </div>

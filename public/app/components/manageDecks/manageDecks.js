@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -18,6 +18,7 @@
         function createDeck($event) {
             if ($event && $event.type == 'keypress' && event.keyCode != 13) return null;
             vm.decks.$add({
+                created: Date.now(),
                 name: vm.newDeck
             });
         }

@@ -4,7 +4,7 @@
         <h1>Dashboard</h1>
     </div>
     <div class="jumbotron">
-        <div class="row">
+        <div class="row" ng-if="vm.decks.length">
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -33,6 +33,9 @@
             <div class="col-sm-8">
                 <div ui-view> </div>
             </div>
+        </div>
+        <div class="row" ng-if="!vm.decks.length">
+            <p>Looks like you don't have any decks yet! Go to <a ui-sref="manageDecks">Manage Decks</a> to make your first one.
         </div>
     </div>
 

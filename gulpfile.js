@@ -7,7 +7,7 @@ var gsi = require('gulp-scripts-index');
 var watch = require('gulp-watch');
 var debug = require('gulp-debug');
 var babel = require('gulp-babel');
-var uglify = require('gulp-uglify')
+var uglify = require('gulp-uglify');
 
 gulp.task('default', ['compile-scripts', 'compile-less', 'watch-less', 'watch-scripts']);
 

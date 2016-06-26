@@ -18,7 +18,8 @@
             if ($event && $event.type == 'keypress' && event.keyCode != 13) return null;
             vm.cards.$add(Object.assign({
                 cleared: false,
-                created: Date.now()
+                created: Date.now(),
+                recollection_length: 'first'
             }, vm.newCard));
             vm.newCard = {};
         }

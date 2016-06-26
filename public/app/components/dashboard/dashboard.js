@@ -20,7 +20,7 @@
         vm.done = done;
 
         function done(deck) {
-            if (!deck.date) return false;
+            if (!deck.due) return false;
             return ((new Date(deck.due)) > Date.now());
         }
     }

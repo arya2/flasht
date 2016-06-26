@@ -6,8 +6,6 @@ A tool that times the presentation of flash cards so that information can be eff
 
 #Pages
 
-Splash page
-Login
-Present Deck
-Manage Decks
-Dashboard
+- (loggedIn) ? Dashboard : Home/Login
+- Study Deck
+- Manage Decks

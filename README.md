@@ -6,7 +6,7 @@ Implemented spaced-repition with flash cards and Angular.
 
 ### Pages
 
-#### Logged Out
+>> #### Logged Out
 
 - Login (Landing Page)
 

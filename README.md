@@ -2,10 +2,18 @@
 
 ### Description
 
-A tool that times the presentation of flash cards so that information can be efficiently memorized.
+Implemented spaced-repition with flash cards and Angular.
 
 ### Pages
 
-- (loggedIn) ? Dashboard : Home/Login
-- Study Deck
-- Manage Decks
+##### Logged Out
+- Login (Landing Page)
+
+##### loggedIn
+- List of Decks View
+  - List of Cards View
+    - Study
+    - Edit Card Text
+    - Remove Card
+    - Add Card
+      

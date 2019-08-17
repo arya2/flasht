@@ -2,7 +2,8 @@
 
 ### Description
 
-Implemented spaced-repition with flash cards and Angular.
+Decks of flash cards for memorizing knowledge by subject with spaced-repition memorization.
+Made with Angular.
 
 ### Pages
 

@@ -1,10 +1,10 @@
-##Flasht
+# Flasht
 
-#Description
+### Description
 
 A tool that times the presentation of flash cards so that information can be efficiently memorized.
 
-#Pages
+### Pages
 
 - (loggedIn) ? Dashboard : Home/Login
 - Study Deck

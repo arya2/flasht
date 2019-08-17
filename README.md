@@ -6,16 +6,20 @@ Implemented spaced-repition with flash cards and Angular.
 
 ### Pages
 
->> #### Logged Out
+#### &nbsp;&nbsp; Logged Out
 
 - Login (Landing Page)
 
-#### loggedIn
-
-- List of Decks View
-  - List of Cards View
-    - Study
-    - Edit Card Text
-    - Remove Card
-    - Add Card
-      
+#### &nbsp;&nbsp; loggedIn
+- Dashboard
+    - Logout
+    - DeckListView
+        - DeckItemView
+            - Study 
+            - Rename 
+            - Remove
+            - Add Card
+            - CardsListView
+                - CardItemView
+                    - Edit Text
+                    - Remove Card

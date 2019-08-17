@@ -2,7 +2,7 @@
 
 ### Description
 
-Decks of flash cards for memorizing knowledge by subject with spaced-repition memorization.
+Decks of flash cards for memorizing things with spaced-repition memorization.
 Made with Angular.
 
 ### Pages

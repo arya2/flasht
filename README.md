@@ -3,7 +3,7 @@
 ### Description
 
 Decks of flash cards for memorizing things with spaced-repition memorization.
-Made with Angular.
+Inspired by Anki, made with Angular.
 
 ### Pages
 
